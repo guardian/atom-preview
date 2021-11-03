@@ -1,0 +1,5 @@
+name: atom-preview
+mappings:
+  - prefix: atom-preview
+    port: 9000
+    path:
