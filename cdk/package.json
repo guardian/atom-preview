@@ -11,7 +11,7 @@
     "format": "prettier --write \"{lib,bin}/**/*.ts\"",
     "cdk": "cdk",
     "lint": "eslint lib/** bin/** --ext .ts --no-error-on-unmatched-pattern",
-    "generate": "cdk synth --path-metadata false --version-reporting false"
+    "synth": "cdk synth --path-metadata false --version-reporting false"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.122.0",
