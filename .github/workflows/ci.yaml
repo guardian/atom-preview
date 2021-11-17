@@ -37,4 +37,4 @@ jobs:
 
       - name: Run script/ci
         run: |
-          sbt compile
+          sbt compile riffRaffUpload
