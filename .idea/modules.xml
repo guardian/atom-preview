@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/play-scala-compile-di-example.iml" filepath="$PROJECT_DIR$/.idea/modules/play-scala-compile-di-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/play-scala-compile-di-example-build.iml" filepath="$PROJECT_DIR$/.idea/modules/play-scala-compile-di-example-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/atom-preview.iml" filepath="$PROJECT_DIR$/.idea/modules/atom-preview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/atom-preview-build.iml" filepath="$PROJECT_DIR$/.idea/modules/atom-preview-build.iml" />
     </modules>
   </component>
 </project>

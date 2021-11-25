@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <profile name="sbt 1" modules="atom-preview_2617" />
-    <profile name="sbt 2" modules="play-scala-compile-di-example">
+    <profile name="sbt 2" modules="atom-preview,play-scala-compile-di-example">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <option name="featureWarnings" value="true" />
