@@ -25,16 +25,16 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
 
     val jsAssetHost = sys.env.get("JS_ASSET_HOST")
 
-//    val isHotReloading = jsAssetHost match {
-//      case Some(_) if awsConfig.isDev => true
-//      case _ => false
-//    }
+    val isHotReloading = jsAssetHost match {
+      case Some(_) if awsConfig.isDev => true
+      case _ => false
+    }
 
-//    val jsLocation = if (isHotReloading) {
-//      jsAssetHost.get + jsFileName
-//    } else {
-//      routes.Assets.versioned(jsFileName).toString
-//    }
+    val jsLocation = if (isHotReloading) {
+      jsAssetHost.get + jsFileName
+    } else {
+      routes.Assets.versioned(jsFileName).toString
+    }
   }
 
 }
