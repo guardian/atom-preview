@@ -8,4 +8,4 @@ import { AtomPreview } from "../lib/atom-preview";
 const app = new App();
 //  TODO: Add stack name
 //   e.g. { stack: "SomeStack" }
-new AtomPreview(app, "Flexible", { stack: "flexible" });
+new AtomPreview(app, "atom-preview", { stack: "flexible" });
