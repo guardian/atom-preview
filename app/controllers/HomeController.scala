@@ -18,22 +18,5 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
    */
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
-
-//    val jsFileName = "atom-preview/public/frontend/static/js/my-atom-preview-app.js"
-//    val autotrackJsLocation = routes.Assets.versioned("atom-preview/public/frontend/static/js/my-atom-preview-app.js").toString
-//
-//    val jsAssetHost = sys.env.get("JS_ASSET_HOST")
-//
-//    val isHotReloading = jsAssetHost match {
-//      case Some(_) if awsConfig.isDev => true
-//      case _ => false
-//    }
-//
-//    val jsLocation = if (isHotReloading) {
-//      jsAssetHost.get + jsFileName
-//    } else {
-//      routes.Assets.versioned(jsFileName).toString
-//    }
   }
 }
-
