@@ -1,5 +1,5 @@
 lazy val root = (project in file("."))
-  .enablePlugins(PlayScala)
+  .enablePlugins(PlayScala, RiffRaffArtifact, JDebPackaging)
   .settings(
     name := """play-scala-compile-di-example""",
     version := "1.0-SNAPSHOT",
@@ -11,5 +11,10 @@ lazy val root = (project in file("."))
       "-feature",
       "-unchecked",
       "-Xfatal-warnings"
-    )
+    ),
+     debianPackageDependencies := Seq("openjdk-8-jre-headless"),
+      maintainer := "The Maintainer <the.maintainer@company.com>",
+      packageSummary := "Brief description",
+      packageDescription := """Slightly longer description""",
+      riffRaffPackageType := (packageBin in Debian).value
   )
