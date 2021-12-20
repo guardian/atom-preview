@@ -1,6 +1,7 @@
 /db
 /lib/
 /modules
+node_modules
 test-result
 server.pid
 *.eml
