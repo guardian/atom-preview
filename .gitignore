@@ -6,3 +6,4 @@ server.pid
 *.eml
 target
 .idea
+public/frontend
