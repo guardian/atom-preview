@@ -37,4 +37,6 @@ jobs:
 
       - name: Run script/ci
         run: |
+          yarn --cwd frontend install --frozen-lockfile
+          yarn --cwd frontend build
           sbt compile riffRaffUpload
