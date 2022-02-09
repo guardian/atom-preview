@@ -4,24 +4,29 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String, isDev: Boolean)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         @* Here's where we render the page title `String`. *@
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("frontend/static/css/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
     </head>
     <body>
         @* And here's where we render the `Html` object containing
          * the page content. *@
         <h1>From PLayy App</h1>
         <div id="root"></div>
-        <script src="http://localhost:3000/static/js/bundle.js"></script>
-        <script src="http://localhost:3000/static/js/vendors~main.chunk.js"></script>
-        <script src="http://localhost:3000/static/js/main.chunk.js"></script>
+
+        @if(isDev) {
+            <script src="http://localhost:3000/static/js/bundle.js"></script>
+            <script src="http://localhost:3000/static/js/vendors~main.chunk.js"></script>
+            <script src="http://localhost:3000/static/js/main.chunk.js"></script>
+        } else {
+            <script src="@routes.Assets.versioned("frontend/static/js/main.js")"></script>
+        }
     </body>
 </html>
