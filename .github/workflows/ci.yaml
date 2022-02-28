@@ -25,9 +25,10 @@ jobs:
           lockfile: cdk/yarn.lock
 
 
-      - uses: guardian/actions-assume-aws-role@v1
+      - uses: aws-actions/configure-aws-credentials@v1
         with:
-          awsRoleToAssume: ${{ secrets.GU_RIFF_RAFF_ROLE_ARN }}
+          role-to-assume: ${{ secrets.GU_RIFF_RAFF_ROLE_ARN }}
+          aws-region: eu-west-1
 
       - name: Setup Java 8
         uses: actions/setup-java@v2
