@@ -19,10 +19,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v2
-      - uses: guardian/cdk@aa-composite-action
-        with:
-          packageManager: yarn
-          lockfile: cdk/yarn.lock
 
 
       - uses: aws-actions/configure-aws-credentials@v1
