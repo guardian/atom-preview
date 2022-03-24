@@ -18,4 +18,4 @@ deployments:
     type: autoscaling
     parameters:
       bucket: composer-dist
-    dependancies: [cloudformation]
+    dependencies: [cloudformation]
