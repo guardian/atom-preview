@@ -16,5 +16,10 @@ lazy val root = (project in file("."))
       maintainer := "The Maintainer <the.maintainer@company.com>",
       packageSummary := "Brief description",
       packageDescription := """Slightly longer description""",
-      riffRaffPackageType := (packageBin in Debian).value
+      riffRaffPackageType := (packageBin in Debian).value,
+    riffRaffArtifactResources := Seq(
+      (Debian / packageBin).value -> s"${name.value}/${name.value}.deb",
+      baseDirectory.value / "riff-raff.yaml" -> "riff-raff.yaml",
+      baseDirectory.value / "cdk" / "cdk.out" / "AtomPreview.template.json" -> s"cloudformation/AtomPreview.template.json"
+    ),
   )
