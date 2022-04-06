@@ -4,11 +4,13 @@ import { GuStack } from "@guardian/cdk/lib/constructs/core";
 import { GuEc2App} from "@guardian/cdk";
 import {AccessScope, Stage} from "@guardian/cdk/lib/constants";
 import {InstanceClass, InstanceSize, InstanceType} from "@aws-cdk/aws-ec2";
+import {GuCname} from "@guardian/cdk/lib/constructs/dns";
+import {Duration} from "@aws-cdk/core";
 
 export class AtomPreview extends GuStack {
   constructor(scope: App, id: string, props: GuStackProps) {
     super(scope, id, props);
-    new GuEc2App(this, {
+    const { loadBalancer } = new GuEc2App(this, {
       applicationPort: 1234,
       app: "atom-preview",
       access: { scope: AccessScope.PUBLIC },
@@ -39,5 +41,6 @@ export class AtomPreview extends GuStack {
         }
       }
     });
+    new GuCname(this, "dns", {app: "atom-preview", domainName:  "atom-preview.code.dev-gutools.co.uk", resourceRecord: loadBalancer.loadBalancerDnsName, ttl: Duration.hours(1),})
   }
 }
