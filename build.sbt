@@ -1,5 +1,5 @@
 lazy val root = (project in file("."))
-  .enablePlugins(PlayScala, RiffRaffArtifact, JDebPackaging)
+  .enablePlugins(PlayScala, RiffRaffArtifact, JDebPackaging, SystemdPlugin)
   .settings(
     name := """atom-preview""",
     version := "1.0-SNAPSHOT",
@@ -12,7 +12,6 @@ lazy val root = (project in file("."))
       "-unchecked",
       "-Xfatal-warnings"
     ),
-     debianPackageDependencies := Seq("openjdk-8-jre-headless"),
       maintainer := "The Maintainer <the.maintainer@company.com>",
       packageSummary := "Brief description",
       packageDescription := """Slightly longer description""",
