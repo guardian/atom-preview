@@ -21,4 +21,9 @@ lazy val root = (project in file("."))
       baseDirectory.value / "riff-raff.yaml" -> "riff-raff.yaml",
       baseDirectory.value / "cdk" / "cdk.out" / "AtomPreview.template.json" -> s"cloudformation/AtomPreview.template.json"
     ),
+    Universal / javaOptions ++= Seq(
+      s"-Dpidfile.path=/dev/null",
+      s"-J-Dlogs.home=/var/log/${packageName.value}",
+      s"-J-Xloggc:/var/log/${packageName.value}/gc.log",
+    ),
   )
