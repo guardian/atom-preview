@@ -11,7 +11,7 @@ export class AtomPreview extends GuStack {
   constructor(scope: App, id: string, props: GuStackProps) {
     super(scope, id, props);
     const { loadBalancer } = new GuEc2App(this, {
-      applicationPort: 1234,
+      applicationPort: 9000,
       app: "atom-preview",
       access: { scope: AccessScope.PUBLIC },
       instanceType: InstanceType.of(InstanceClass.T4G, InstanceSize.SMALL),

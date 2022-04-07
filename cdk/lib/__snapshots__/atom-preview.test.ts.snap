@@ -351,10 +351,10 @@ dpkg -i /atom-preview/atom-preview.deb",
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "GuHttpsEgressSecurityGroupAtompreviewfromAtomPreviewLoadBalancerAtompreviewSecurityGroupD74F87511234FCF4DB69": Object {
+    "GuHttpsEgressSecurityGroupAtompreviewfromAtomPreviewLoadBalancerAtompreviewSecurityGroupD74F875190005FB9F28A": Object {
       "Properties": Object {
         "Description": "Load balancer to target",
-        "FromPort": 1234,
+        "FromPort": 9000,
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "GuHttpsEgressSecurityGroupAtompreview72923F0F",
@@ -368,7 +368,7 @@ dpkg -i /atom-preview/atom-preview.deb",
             "GroupId",
           ],
         },
-        "ToPort": 1234,
+        "ToPort": 9000,
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
@@ -581,7 +581,7 @@ dpkg -i /atom-preview/atom-preview.deb",
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "LoadBalancerAtompreviewSecurityGrouptoAtomPreviewGuHttpsEgressSecurityGroupAtompreview9DA18F211234E6921FC5": Object {
+    "LoadBalancerAtompreviewSecurityGrouptoAtomPreviewGuHttpsEgressSecurityGroupAtompreview9DA18F21900087C11F36": Object {
       "Properties": Object {
         "Description": "Load balancer to target",
         "DestinationSecurityGroupId": Object {
@@ -590,7 +590,7 @@ dpkg -i /atom-preview/atom-preview.deb",
             "GroupId",
           ],
         },
-        "FromPort": 1234,
+        "FromPort": 9000,
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "LoadBalancerAtompreviewSecurityGroupF8A8C6B0",
@@ -598,7 +598,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           ],
         },
         "IpProtocol": "tcp",
-        "ToPort": 1234,
+        "ToPort": 9000,
       },
       "Type": "AWS::EC2::SecurityGroupEgress",
     },
@@ -712,7 +712,7 @@ dpkg -i /atom-preview/atom-preview.deb",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 5,
         "HealthyThresholdCount": 5,
-        "Port": 1234,
+        "Port": 9000,
         "Protocol": "HTTP",
         "Tags": Array [
           Object {
