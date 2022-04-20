@@ -19,4 +19,8 @@ class HomeController @Inject()(cc: ControllerComponents, isDev: Boolean) extends
   def index = Action {
     Ok(views.html.index("Your new application is ready.", isDev))
   }
+
+  def capiFinder(id: String) = Action {
+    Ok(s"The ID searched: $id")
+  }
 }
