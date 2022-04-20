@@ -19,10 +19,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v2
-      - uses: guardian/cdk@aa-composite-action
-        with:
-          packageManager: yarn
-          lockfile: cdk/yarn.lock
 
 
       - uses: aws-actions/configure-aws-credentials@v1
@@ -40,4 +36,6 @@ jobs:
         run: |
           yarn --cwd frontend install --frozen-lockfile
           yarn --cwd frontend build
+          yarn --cwd cdk install --frozen-lockfile
+          yarn --cwd cdk synth
           sbt compile riffRaffUpload
