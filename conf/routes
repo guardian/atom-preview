@@ -11,3 +11,9 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /healthcheck                controllers.HomeController.index
 
 GET     /atomid/:id                 controllers.HomeController.capiFinder(id: String)
+
+GET     /showUser                   controllers.Login.status
+
+GET     /oauthCallback              controllers.Login.oauthCallback
+
+GET     /logout                     controllers.Login.logout
