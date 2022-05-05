@@ -11,11 +11,11 @@ class Config(context: ApplicationLoader.Context) {
   lazy val no2faUser: String = "composer.test@guardian.co.uk"
   lazy val domain: String = "local.dev-gutools.co.uk"
   lazy val host: String = s"https://atom-preview.$domain"
-  lazy val pandaSystem: String = "workflow"
+  lazy val pandaSystem: String = "atom-preview"
   lazy val pandaBucketName: String = "pan-domain-auth-settings"
   lazy val pandaSettingsFile: String = s"$domain.settings"
   lazy val credentialsProvider = new AWSCredentialsProviderChain(
-    new ProfileCredentialsProvider("workflow"),
+    new ProfileCredentialsProvider("composer"),
     new DefaultAWSCredentialsProviderChain()
   )
   lazy val region: Region = Region getRegion Regions.EU_WEST_1
