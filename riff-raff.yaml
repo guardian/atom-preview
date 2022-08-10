@@ -7,7 +7,9 @@ deployments:
     type: cloud-formation
     app: atom-preview
     parameters:
-      templatePath: AtomPreview.template.json
+      templateStagePaths:
+        CODE: AtomPreview-CODE.template.json
+        PROD: AtomPreview-PROD.template.json
       amiParameter: AMIAtompreview
       amiEncrypted: true
       amiTags:
