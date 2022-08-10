@@ -2,20 +2,6 @@
 
 exports[`The AtomPreview stack matches the snapshot 1`] = `
 Object {
-  "Mappings": Object {
-    "atompreview": Object {
-      "CODE": Object {
-        "domainName": "atom-preview.code.dev-gutools.co.uk",
-        "maxInstances": 2,
-        "minInstances": 1,
-      },
-      "PROD": Object {
-        "domainName": "atom-preview.gutools.co.uk",
-        "maxInstances": 2,
-        "minInstances": 1,
-      },
-    },
-  },
   "Outputs": Object {
     "LoadBalancerAtompreviewDnsName": Object {
       "Description": "DNS entry for LoadBalancerAtompreview",
@@ -42,15 +28,6 @@ Object {
       "Description": "SSM parameter containing the Name (not ARN) on the kinesis stream",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
-    "Stage": Object {
-      "AllowedValues": Array [
-        "CODE",
-        "PROD",
-      ],
-      "Default": "CODE",
-      "Description": "Stage name",
-      "Type": "String",
-    },
     "VpcId": Object {
       "Default": "/account/vpc/primary/id",
       "Description": "Virtual Private Cloud to run EC2 instances within. Should NOT be the account default VPC.",
@@ -75,24 +52,8 @@ Object {
         "LaunchConfigurationName": Object {
           "Ref": "AutoScalingGroupAtompreviewLaunchConfig02DE693A",
         },
-        "MaxSize": Object {
-          "Fn::FindInMap": Array [
-            "atompreview",
-            Object {
-              "Ref": "Stage",
-            },
-            "maxInstances",
-          ],
-        },
-        "MinSize": Object {
-          "Fn::FindInMap": Array [
-            "atompreview",
-            Object {
-              "Ref": "Stage",
-            },
-            "minInstances",
-          ],
-        },
+        "MaxSize": "2",
+        "MinSize": "1",
         "Tags": Array [
           Object {
             "Key": "App",
@@ -115,6 +76,13 @@ Object {
             "Value": "guardian/atom-preview",
           },
           Object {
+            "Key": "LogKinesisStreamName",
+            "PropagateAtLaunch": true,
+            "Value": Object {
+              "Ref": "LoggingStreamName",
+            },
+          },
+          Object {
             "Key": "Name",
             "PropagateAtLaunch": true,
             "Value": "AtomPreview/AutoScalingGroupAtompreview",
@@ -127,9 +95,7 @@ Object {
           Object {
             "Key": "Stage",
             "PropagateAtLaunch": true,
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "TargetGroupARNs": Array [
@@ -193,11 +159,7 @@ aws s3 cp 's3://",
                 Object {
                   "Ref": "DistributionBucketName",
                 },
-                "/flexible/",
-                Object {
-                  "Ref": "Stage",
-                },
-                "/atom-preview/atom-preview.deb' '/atom-preview/atom-preview.deb'
+                "/flexible/PROD/atom-preview/atom-preview.deb' '/atom-preview/atom-preview.deb'
 dpkg -i /atom-preview/atom-preview.deb",
               ],
             ],
@@ -209,15 +171,7 @@ dpkg -i /atom-preview/atom-preview.deb",
     "CertificateAtompreview18C38C6D": Object {
       "DeletionPolicy": "Retain",
       "Properties": Object {
-        "DomainName": Object {
-          "Fn::FindInMap": Array [
-            "atompreview",
-            Object {
-              "Ref": "Stage",
-            },
-            "domainName",
-          ],
-        },
+        "DomainName": "atom-preview.gutools.co.uk",
         "Tags": Array [
           Object {
             "Key": "App",
@@ -237,9 +191,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "ValidationMethod": "DNS",
@@ -288,11 +240,7 @@ dpkg -i /atom-preview/atom-preview.deb",
                     Object {
                       "Ref": "DistributionBucketName",
                     },
-                    "/flexible/",
-                    Object {
-                      "Ref": "Stage",
-                    },
-                    "/atom-preview/*",
+                    "/flexible/PROD/atom-preview/*",
                   ],
                 ],
               },
@@ -340,9 +288,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "VpcId": Object {
@@ -458,9 +404,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
       },
@@ -530,9 +474,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "Type": "application",
@@ -570,9 +512,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "VpcId": Object {
@@ -621,11 +561,7 @@ dpkg -i /atom-preview/atom-preview.deb",
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/",
-                    Object {
-                      "Ref": "Stage",
-                    },
-                    "/flexible/atom-preview",
+                    ":parameter/PROD/flexible/atom-preview",
                   ],
                 ],
               },
@@ -648,11 +584,7 @@ dpkg -i /atom-preview/atom-preview.deb",
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/",
-                    Object {
-                      "Ref": "Stage",
-                    },
-                    "/flexible/atom-preview/*",
+                    ":parameter/PROD/flexible/atom-preview/*",
                   ],
                 ],
               },
@@ -733,9 +665,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "TargetGroupAttributes": Array [
@@ -790,9 +720,7 @@ dpkg -i /atom-preview/atom-preview.deb",
           },
           Object {
             "Key": "Stage",
-            "Value": Object {
-              "Ref": "Stage",
-            },
+            "Value": "PROD",
           },
         ],
         "VpcId": Object {
@@ -803,7 +731,7 @@ dpkg -i /atom-preview/atom-preview.deb",
     },
     "dns": Object {
       "Properties": Object {
-        "Name": "atom-preview.code.dev-gutools.co.uk",
+        "Name": "atom-preview.gutools.co.uk",
         "RecordType": "CNAME",
         "ResourceRecords": Array [
           Object {
@@ -813,9 +741,7 @@ dpkg -i /atom-preview/atom-preview.deb",
             ],
           },
         ],
-        "Stage": Object {
-          "Ref": "Stage",
-        },
+        "Stage": "PROD",
         "TTL": 3600,
       },
       "Type": "Guardian::DNS::RecordSet",
