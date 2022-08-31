@@ -13,7 +13,7 @@ deployments:
       amiParameter: AMIAtompreview
       amiEncrypted: true
       amiTags:
-        Recipe: arm64-bionic-java11-deploy-infrastructure
+        Recipe: editorial-tools-bionic-java8-WITH-cdk-base
         AmigoStage: PROD
         BuiltBy: amigo
   atom-preview:
