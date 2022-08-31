@@ -19,8 +19,10 @@ lazy val root = (project in file("."))
     riffRaffArtifactResources := Seq(
       (Debian / packageBin).value -> s"${name.value}/${name.value}.deb",
       baseDirectory.value / "riff-raff.yaml" -> "riff-raff.yaml",
-      baseDirectory.value / "cdk" / "cdk.out" / "AtomPreview.template.json" -> s"cloudformation/AtomPreview.template.json"
-    ),
+      baseDirectory.value / "cdk" / "cdk.out" / "AtomPreview-CODE.template.json" -> s"cloudformation/AtomPreview-CODE.template.json",
+      baseDirectory.value / "cdk" / "cdk.out" / "AtomPreview-PROD.template.json" -> s"cloudformation/AtomPreview-PROD.template.json"
+
+  ),
     Universal / javaOptions ++= Seq(
       s"-Dpidfile.path=/dev/null",
       s"-J-Dlogs.home=/var/log/${packageName.value}",
