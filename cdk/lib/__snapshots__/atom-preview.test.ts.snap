@@ -97,6 +97,11 @@ Object {
             "PropagateAtLaunch": true,
             "Value": "PROD",
           },
+          Object {
+            "Key": "SystemdUnit",
+            "PropagateAtLaunch": true,
+            "Value": "atom-preview.service",
+          },
         ],
         "TargetGroupARNs": Array [
           Object {
