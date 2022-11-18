@@ -6,6 +6,7 @@ import { GuCname } from '@guardian/cdk/lib/constructs/dns';
 import type { App } from 'aws-cdk-lib';
 import { Duration } from 'aws-cdk-lib';
 import { InstanceClass, InstanceSize, InstanceType } from 'aws-cdk-lib/aws-ec2';
+import {bootstrapCommand} from "@guardian/cdk/lib/bin/commands/bootstrap";
 
 interface AtomProps extends GuStackProps {
 	domainName: string;
@@ -24,6 +25,9 @@ export class AtomPreview extends GuStack {
 			},
 			monitoringConfiguration: {
 				noMonitoring: true,
+			},
+			applicationLogging: {
+				enabled: true
 			},
 			userData: {
 				distributable: {
