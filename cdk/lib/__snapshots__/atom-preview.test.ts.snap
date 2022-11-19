@@ -547,6 +547,27 @@ dpkg -i /atom-preview/atom-preview.deb",
       },
       "Type": "AWS::EC2::SecurityGroupEgress",
     },
+    "PanDomainPolicyB981546E": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": "arn:aws:s3:::pan-domain-auth-settings/*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PanDomainPolicyB981546E",
+        "Roles": Array [
+          Object {
+            "Ref": "InstanceRoleAtompreview4AABC81B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
     "ParameterStoreReadAtompreviewEC146574": Object {
       "Properties": Object {
         "PolicyDocument": Object {
