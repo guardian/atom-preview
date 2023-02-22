@@ -19,5 +19,4 @@ deployments:
   atom-preview:
     type: autoscaling
     parameters:
-      bucket: composer-dist
     dependencies: [cloudformation]
