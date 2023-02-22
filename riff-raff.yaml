@@ -6,7 +6,6 @@ deployments:
   cloudformation:
     type: cloud-formation
     app: atom-preview
-    parameters:
       templateStagePaths:
         CODE: AtomPreview-CODE.template.json
         PROD: AtomPreview-PROD.template.json
