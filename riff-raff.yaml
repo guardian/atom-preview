@@ -18,4 +18,5 @@ deployments:
         BuiltBy: amigo
   atom-preview:
     type: autoscaling
+    parameters:
     dependencies: [cloudformation]
