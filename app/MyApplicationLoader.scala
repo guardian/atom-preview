@@ -4,6 +4,7 @@ import play.api.mvc.EssentialFilter
 import play.api.routing.Router
 import config.Config
 import controllers._
+import play.api.libs.logback.LogbackLoggerConfigurator
 
 import play.api.libs.ws.ahc.AhcWSComponents
 
@@ -11,6 +12,7 @@ class MyApplicationLoader extends ApplicationLoader {
   private var components: MyComponents = _
 
   def load(context: ApplicationLoader.Context): Application = {
+    new LogbackLoggerConfigurator().configure(context.environment)
     components = new MyComponents(context)
     components.application
   }
