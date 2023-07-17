@@ -33,7 +33,7 @@ class MyComponents(context: ApplicationLoader.Context)
     settingsFileKey = config.pandaSettingsFile,
     s3Client = config.S3Client
   )
-  lazy val homeController = new _root_.controllers.HomeController(controllerComponents, config.isDev)
+  lazy val homeController = new _root_.controllers.HomeController(controllerComponents, config.isDev, wsClient)
   lazy val login = new _root_.controllers.Login(config, controllerComponents, wsClient, panDomainRefresher )
   lazy val router: Router = new _root_.router.Routes(httpErrorHandler, homeController, assets, login)
 
