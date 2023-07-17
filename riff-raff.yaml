@@ -6,7 +6,6 @@ deployments:
   cloudformation:
     type: cloud-formation
     app: atom-preview
-    parameters:
       templateStagePaths:
         CODE: AtomPreview-CODE.template.json
         PROD: AtomPreview-PROD.template.json
@@ -19,5 +18,4 @@ deployments:
   atom-preview:
     type: autoscaling
     parameters:
-      bucket: composer-dist
     dependencies: [cloudformation]
