@@ -9,7 +9,6 @@ deployments:
     parameters:
       templateStagePaths:
         CODE: AtomPreview-CODE.template.json
-        PROD: AtomPreview-PROD.template.json
       amiParameter: AMIAtompreview
       amiEncrypted: true
       amiTags:
