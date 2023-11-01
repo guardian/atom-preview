@@ -7,6 +7,8 @@ GET     /                              controllers.HomeController.index
 
 GET     /testPath/:testString          controllers.HomeController.logTestString(testString: String)
 
+GET     /capiAtom/:atomId              controllers.Support.capiProxy(atomId: String)
+
 #GET     /atoms/:atomId                 controllers.AtomController.getAtom(atomId: String)
 
 #GET     /api/preview/:atomType/:id     controllers.AtomController.getAtom(atomType: String, id: String, version = "preview")
