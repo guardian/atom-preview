@@ -28,6 +28,13 @@ lazy val root = (project in file("."))
       s"-J-Dlogs.home=/var/log/${packageName.value}",
       s"-J-Xloggc:/var/log/${packageName.value}/gc.log",
     ),
-    libraryDependencies += "com.gu" %% "pan-domain-auth-play_2-8" % "1.2.1",
-    libraryDependencies += ws
-  )
+      libraryDependencies ++= Seq(
+          "com.gu" %% "pan-domain-auth-play_2-8" % "1.0.4",
+          "com.gu" %% "content-api-client" % "15.9",
+          "com.gu" %% "content-api-client-aws" % "0.7",
+          "com.amazonaws" % "aws-java-sdk-sts" % "1.11.384",
+          ws
+      ),
+      libraryDependencies += "com.gu" %% "simple-configuration-ssm" % "1.5.7"
+)
+

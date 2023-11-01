@@ -3,7 +3,19 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                              controllers.HomeController.index
+
+GET     /testPath/:testString          controllers.HomeController.logTestString(testString: String)
+
+GET     /capiAtom/:atomId              controllers.Support.capiProxy(atomId: String)
+
+#GET     /atoms/:atomId                 controllers.AtomController.getAtom(atomId: String)
+
+#GET     /api/preview/:atomType/:id     controllers.AtomController.getAtom(atomType: String, id: String, version = "preview")
+#
+##Support
+#GET /support/capi/*path                          controllers.Support.capiProxy(path: String)
+#GET /support/previewCapi/*path                   controllers.Support.previewCapiProxy(path: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
