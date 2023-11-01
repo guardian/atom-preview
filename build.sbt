@@ -4,7 +4,7 @@ lazy val root = (project in file("."))
     name := """atom-preview""",
     version := "1.0-SNAPSHOT",
     scalaVersion := "2.13.6",
-    libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test,
+    libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
     scalacOptions ++= List(
       "-encoding", "utf8",
       "-deprecation",
@@ -15,7 +15,7 @@ lazy val root = (project in file("."))
       maintainer := "The Maintainer <the.maintainer@company.com>",
       packageSummary := "Brief description",
       packageDescription := """Slightly longer description""",
-      riffRaffPackageType := (packageBin in Debian).value,
+      riffRaffPackageType := (Debian / packageBin).value,
     riffRaffArtifactResources := Seq(
       (Debian / packageBin).value -> s"${name.value}/${name.value}.deb",
       baseDirectory.value / "riff-raff.yaml" -> "riff-raff.yaml",
@@ -36,5 +36,5 @@ lazy val root = (project in file("."))
           ws
       ),
       libraryDependencies += "com.gu" %% "simple-configuration-ssm" % "1.5.7"
-
 )
+

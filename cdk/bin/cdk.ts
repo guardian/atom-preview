@@ -9,9 +9,3 @@ new AtomPreview(app, 'AtomPreview-CODE', {
 	minimumInstances: 1,
 	domainName: 'atom-preview.code.dev-gutools.co.uk',
 });
-new AtomPreview(app, 'AtomPreview-PROD', {
-	stack: 'flexible',
-	stage: 'PROD',
-	minimumInstances: 1,
-	domainName: 'atom-preview.gutools.co.uk',
-});

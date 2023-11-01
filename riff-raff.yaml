@@ -9,7 +9,6 @@ deployments:
     parameters:
       templateStagePaths:
         CODE: AtomPreview-CODE.template.json
-        PROD: AtomPreview-PROD.template.json
       amiParameter: AMIAtompreview
       amiEncrypted: true
       amiTags:
@@ -19,5 +18,5 @@ deployments:
   atom-preview:
     type: autoscaling
     parameters:
-      bucket: composer-dist
+      bucketSsmLookup: true
     dependencies: [cloudformation]
