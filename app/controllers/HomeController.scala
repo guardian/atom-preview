@@ -1,5 +1,6 @@
 package controllers
 
+import config.Config
 import javax.inject.Inject
 import play.api.mvc._
 import play.api.Logging
@@ -13,7 +14,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
  * application's home page.
  */
 
-class HomeController @Inject()(cc: ControllerComponents, isDev: Boolean, ws: WSClient) extends AbstractController(cc) with Logging {
+class HomeController @Inject()(cc: ControllerComponents, isDev: Boolean, ws: WSClient, config: Config) extends AbstractController(cc) with Logging {
   /**
    * Create an Action to render an HTML page with a welcome message.
    * The configuration in the `routes` file means that this method

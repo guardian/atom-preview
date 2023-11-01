@@ -1,9 +1,8 @@
 import com.gu.pandomainauth.PanDomainAuthSettingsRefresher
 import play.api._
-import play.api.mvc.EssentialFilter
+import play.api.mvc.{EssentialFilter}
 import play.api.routing.Router
-import config.Config
-import controllers._
+import config.{Config}
 import play.api.libs.logback.LogbackLoggerConfigurator
 import play.api.libs.ws.ahc.AhcWSComponents
 
@@ -33,8 +32,9 @@ class MyComponents(context: ApplicationLoader.Context)
     settingsFileKey = config.pandaSettingsFile,
     s3Client = config.S3Client
   )
-  lazy val homeController = new _root_.controllers.HomeController(controllerComponents, config.isDev, wsClient)
+  lazy val homeController = new _root_.controllers.HomeController(controllerComponents, config.isDev, wsClient, config)
+  lazy val support = new _root_.controllers.Support(controllerComponents, wsClient, config)
   lazy val login = new _root_.controllers.Login(config, controllerComponents, wsClient, panDomainRefresher )
-  lazy val router: Router = new _root_.router.Routes(httpErrorHandler, homeController, assets, login)
+  lazy val router: Router = new _root_.router.Routes(httpErrorHandler, homeController, support, assets, login)
 
 }
