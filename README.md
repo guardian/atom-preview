@@ -1,56 +1,44 @@
-# play-scala-compile-di-example
+# Improving the UX of Atoms in Composer: `atom-preview`
 
-This is an example of Play using the Scala API with manually wired compile time dependency injection.
+This project aims to `improve the UX of embedding atoms into Composer, specifically reducing the number of clicks needed to understand how the atom will appear within an article once published.
 
-The application loader here is `MyApplicationLoader` which uses `MyComponents` to wire together an injector.
+Currently, once an atom is embedded, the defaultHtml is rendered. The defaultHtml is very basic, with no styling or JS, and looks like this:
 
-For testing, a `MyApplicationFactory` is defined and mixed in:
 
-```scala
-trait MyApplicationFactory extends FakeApplicationFactory {
+<img width="400" alt="Screenshot 2023-11-15 at 18 57 38" src="https://github.com/guardian/atom-preview/assets/49187886/6e53abe2-e768-40cb-a5be-d465fa22d70f">
 
-  override def fakeApplication: Application = {
-    val env = Environment.simple(new File("."))
-    val configuration = Configuration.load(env)
-    val context = ApplicationLoader.Context(
-      environment = env,
-      sourceMapper = None,
-      webCommands = new DefaultWebCommands(),
-      initialConfiguration = configuration,
-      lifecycle = new DefaultApplicationLifecycle()
-    )
-    val loader = new MyApplicationLoader()
-    loader.load(context)
-  }
+##### To see how it would render, we have to preview the article.
 
-}
-```
+<img width="400" alt="Screenshot 2023-11-15 at 18 58 58" src="https://github.com/guardian/atom-preview/assets/49187886/01acee95-18b1-4ff9-b1a8-f4457aa51ee5">
 
-Once the `MyApplicationFactory` is defined, the fake application is used by TestSuite types:
 
-```scala
-class ServerSpec extends PlaySpec
-  with BaseOneServerPerSuite
-  with MyApplicationFactory
-  with ScalaFutures
-  with IntegrationPatience {
+#### What if Composer rendered the atom in a more WYSIWYG way?
 
-  private implicit val implicitPort = port
+Proposal
+Create a separate service that, given an atom ID, it will use the atoms-rendering library to render the atom. Then have Composer embed an iframe of this service in place of the defaultHtml.
 
-  "Server query should" should {
-    "work" in {
-      whenReady(play.api.test.WsTestClient.wsUrl("/").get) { response =>
-        response.status mustBe play.api.http.Status.OK
-      }
-    }
-  }
-}
-```
+#### Why a separate service, vs. adding atoms-rendering as a dependency to Composer?
+Composer’s code base is already complex.
 
-## Further Documentation
+Having this as a separate service, other tools can benefit, for example, Atom Workshop, or Media Atom Maker. Currently these do not render the atom at all, they just present some editable fields with minimal styling.
 
-* [Compile Time Dependency Injection](https://www.playframework.com/documentation/latest/ScalaCompileTimeDependencyInjection)
-* [Using ScalaTest + Play](https://www.playframework.com/documentation/latest/ScalaTestingWithScalaTest#Using-ScalaTest-+-Play)
-* [ScalaTest User Guide](http://www.scalatest.org/user_guide)
-* [ScalaTest/Scalactic 3.0.0 Release Notes](http://www.scalatest.org/release_notes/3.0.0)
-* [ScalaTest Plus Play](https://github.com/playframework/scalatestplus-play)
+<img width="400" alt="Screenshot 2023-11-15 at 19 00 43" src="https://github.com/guardian/atom-preview/assets/49187886/61e3e432-52eb-4127-bcbf-caf6127665a7">
+
+If one wants to understand how an atom would appear online, they have to embed it into an article.
+
+#### How to build this?
+The atom-preview repository starts to do this. It is a Scala Play app, with a React frontend. It’s still a prototype. The aim is to take an atom ID, fetch the atom from CAPI, then pass it through atom-preview.
+
+This service should also authenticate users as it will be capable of showing preview content.
+
+#### What changes would be needed in Composer (/Atom Workshop/Media Atom Maker)?
+Not much! We think the changes would be minimal, changing srcdoc to src with src referring to our external service.
+
+#### What’s left to do in atom-preview?
+Atom Preview currently has some routes to return an atom’s JSON from CAPI. Outstanding work includes:
+Given a CAPI response, render the atom using atom-rendering
+Allow Composer, Atom Workshop etc. to embed atom-preview via an iframe
+Demo to Editorial
+
+Atom Preview is a Scala Play app, with a React frontend. It uses create-react-app, which has been deprecated. Before going to production, we should update all dependencies. This might involve swapping some out.
+
