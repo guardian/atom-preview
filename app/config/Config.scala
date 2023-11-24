@@ -6,10 +6,14 @@ import com.amazonaws.regions.{Region, Regions}
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 import play.api.{ApplicationLoader, Mode}
 
-class Config(context: ApplicationLoader.Context) {
+class Config(context: ApplicationLoader.Context) extends {
   val isDev: Boolean = context.environment.mode == Mode.Dev
   lazy val no2faUser: String = "composer.test@guardian.co.uk"
-  lazy val domain: String = "local.dev-gutools.co.uk"
+  lazy val domain: String = stage match {
+    case "PROD" => s"gutools.co.,uk"
+    case "CODE" => s"code.dev-gutools.co.uk"
+    case _ => s"local.dev-gutools.co.uk"
+  }
   lazy val host: String = s"https://atom-preview.$domain"
   lazy val pandaSystem: String = "atom-preview"
   lazy val pandaBucketName: String = "pan-domain-auth-settings"
